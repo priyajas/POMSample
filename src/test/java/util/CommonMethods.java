@@ -23,6 +23,29 @@ public class CommonMethods {
         return driver;
     }
 
+    public int findFramesCount(WebDriver driver) {
+        return driver.findElements(By.tagName("iframe")).size();
+    }
+
+    public void switchToDefault(WebDriver driver) {
+        driver.switchTo().defaultContent();
+    }
+
+
+    public void switchFrameByIndex(WebDriver driver, int frameIndex) {
+        driver.switchTo().frame(frameIndex);
+    }
+
+    public void switchFrameByID(WebDriver driver, String frameId) {
+        driver.switchTo().frame(frameId);
+    }
+
+    public void switchFrameByWebElement(WebDriver driver, By frameElement) {
+        WebElement frameToSwitch = driver.findElement(frameElement);
+        driver.switchTo().frame(frameToSwitch);
+    }
+
+
     public void handleWindow(WebDriver driver, By sampleHeading) {
         //Get handles of the windows
         String mainWindowHandle = driver.getWindowHandle();

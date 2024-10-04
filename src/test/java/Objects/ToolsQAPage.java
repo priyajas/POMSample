@@ -7,6 +7,7 @@ public class ToolsQAPage {
     WebDriver driver;
     By windowBtn = By.id("windowButton");
     By sampleHeading = By.id("sampleHeading");
+    By frameElement = By.id("frame1");
 
     public ToolsQAPage(WebDriver driver) {
         this.driver = driver;
@@ -18,5 +19,8 @@ public class ToolsQAPage {
 
     public By handleWebElement() {
         return sampleHeading;
+    }
+    public By findFrameWebElement() {
+        return frameElement;
     }
 }
