@@ -2,25 +2,23 @@ package Objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class ToolsQAPage {
+public class LamdaTestPage {
     WebDriver driver;
-    By windowBtn = By.id("windowButton");
-    By sampleHeading = By.id("sampleHeading");
-    By frameElement = By.id("frame1");
+    By singleSelect = By.id("select-demo");
+    By multiSelect = By.id("multi-select");
 
-    public ToolsQAPage(WebDriver driver) {
+    public LamdaTestPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void clickWindowButton() {
-        driver.findElement(windowBtn).click();
+    public WebElement returnSingleSelect() {
+       return driver.findElement(singleSelect);
+    }
+    public WebElement returnMultiSelect() {
+        return driver.findElement(multiSelect);
     }
 
-    public By handleWebElement() {
-        return sampleHeading;
-    }
-    public By findFrameWebElement() {
-        return frameElement;
-    }
+
 }

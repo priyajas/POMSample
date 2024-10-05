@@ -1,2 +1,10 @@
 1.ElementClickInterceptedException
 https://www.lambdatest.com/blog/elementclickinterceptedexception-in-selenium-java/
+
+2.UnexpectedTagNameException
+In case the element passed in the Select class constructor parameter is not of < select > tag,
+then UnexpectedTagNameException will be thrown.
+
+3.UnsupportedOperationException:
+java.lang.UnsupportedOperationException: You may only deselect all options of a multi-select
+This exception will be thrown when you are trying to use deselectAll() from Select class on single option select dropdown
