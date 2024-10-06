@@ -18,6 +18,7 @@ public class CommonMethods {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        //Implicit wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(url);
         return driver;

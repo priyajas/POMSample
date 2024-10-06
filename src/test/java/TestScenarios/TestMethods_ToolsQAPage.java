@@ -3,10 +3,14 @@ package TestScenarios;
 import Objects.GoogleSearchPage;
 import Objects.ToolsQAPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import util.CommonMethods;
+
+import java.time.Duration;
 
 public class TestMethods_ToolsQAPage {
     WebDriver driver;
@@ -22,7 +26,6 @@ public class TestMethods_ToolsQAPage {
         ToolsQAPage toolsPage = new ToolsQAPage(driver);
         toolsPage.clickWindowButton();
         commonMethods.handleWindow(driver, toolsPage.handleWebElement());
-
     }
 
     @AfterTest

@@ -1,14 +1,20 @@
 package TestScenarios;
 
 import Objects.LamdaTestPage;
-import Objects.ToolsQAPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import util.CommonMethods;
 import util.DropDownCommonMethods;
+import org.testng.asserts.SoftAssert;
+
+import java.time.Duration;
 
 public class TestMethods_LamdaTestPage {
     WebDriver driver;
@@ -24,6 +30,9 @@ public class TestMethods_LamdaTestPage {
     @Test(priority = 0)
     public void selectSingleDropDownValue() {
         lamdaTestPage = new LamdaTestPage(driver);
+        //Explicit wait to wait for select dropdown to appear before executing next command
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(lamdaTestPage.returnSingleSelect()));
         dropDownCommonMethods.selectByIndex(lamdaTestPage.returnSingleSelect(), 1);
         System.out.println("Selected Value :" + dropDownCommonMethods.getFirstSelectedText(lamdaTestPage.returnSingleSelect()));
         dropDownCommonMethods.selectByValue(lamdaTestPage.returnSingleSelect(), "Monday");
@@ -37,16 +46,27 @@ public class TestMethods_LamdaTestPage {
         int optionsCount = dropDownCommonMethods.getAllOptionsCountDropDown(lamdaTestPage.returnSingleSelect());
         dropDownCommonMethods.selectByIndex(lamdaTestPage.returnSingleSelect(), optionsCount - 2);
         System.out.println("Selected Value :" + dropDownCommonMethods.getFirstSelectedText(lamdaTestPage.returnSingleSelect()));
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertFalse(dropDownCommonMethods.getSelectedOptionsDropDown(lamdaTestPage.returnSingleSelect()).contains("Monday"));
+        softAssert.assertTrue(dropDownCommonMethods.getSelectedOptionsDropDown(lamdaTestPage.returnSingleSelect()).contains("Friday"));
+        softAssert.assertAll();
     }
     @Test(priority = 0)
     public void selectMultipleDropDownValue() {
         lamdaTestPage = new LamdaTestPage(driver);
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.elementToBeClickable(lamdaTestPage.returnMultiSelect()));
         dropDownCommonMethods.selectByIndex(lamdaTestPage.returnMultiSelect(), 1);
         dropDownCommonMethods.selectByValue(lamdaTestPage.returnMultiSelect(), "Ohio");
         dropDownCommonMethods.selectByVisibleText(lamdaTestPage.returnMultiSelect(), "California");
         System.out.println("All selected values :" + dropDownCommonMethods.getSelectedOptionsDropDown(lamdaTestPage.returnMultiSelect()));
+        Assert.assertTrue(dropDownCommonMethods.getSelectedOptionsDropDown(lamdaTestPage.returnMultiSelect()).contains("California"));
         dropDownCommonMethods.deselectValueFromDropDown(lamdaTestPage.returnMultiSelect());
         System.out.println("All selected values :" + dropDownCommonMethods.getSelectedOptionsDropDown(lamdaTestPage.returnMultiSelect()));
+
     }
 
     @AfterTest
