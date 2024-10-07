@@ -10,5 +10,5 @@ java.lang.UnsupportedOperationException: You may only deselect all options of a 
 This exception will be thrown when you are trying to use deselectAll() from Select class on single option select dropdown
 
 4.StaleElementReferenceException
-  Let’s assume you have a web page where a list is dynamically updated (i.e., elements are added or removed by
-  JavaScript). If you attempt to interact with an element that no longer exists in the DOM, Selenium throws a StaleElementReferenceException.
+Let’s assume you have a web page where a list is dynamically updated (i.e., elements are added or removed by
+JavaScript). If you attempt to interact with an element that no longer exists in the DOM, Selenium throws a StaleElementReferenceException.
