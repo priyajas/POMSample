@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <listeners>
+        <listener
+                class-name="reports.ExtentReportListener"/>
+    </listeners>
     <test verbose="2" preserve-order="true"
           name="C:/Users/Priya/IdeaProjects/POMDemoSample/src/test/java/TestScenarios/TestMethods_GoogleSearch.java">
         <classes>
             <class name="TestScenarios.TestMethods_GoogleSearch">
-                <methods>
-                    <include name="searchTest"/>
-                </methods>
             </class>
         </classes>
     </test>

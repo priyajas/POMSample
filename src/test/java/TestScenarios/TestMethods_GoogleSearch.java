@@ -1,19 +1,21 @@
 package TestScenarios;
 
 import Objects.GoogleSearchPage;
+import config.TestBaseClass;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import util.CommonMethods;
 
-public class TestMethods_GoogleSearch {
+public class TestMethods_GoogleSearch extends TestBaseClass {
     WebDriver driver;
     CommonMethods commonMethods = new CommonMethods();
+    TestBaseClass baseClass = new TestBaseClass();
 
-    @BeforeTest
+    @BeforeMethod
     public void beforeTest() {
-        driver = commonMethods.openChrome("https://www.google.com/", driver);
+        driver = baseClass.getDriver();
+        driver.get("https://www.google.com/");
+        //driver = commonMethods.openChrome("https://www.google.com/", driver);
     }
 
     @Test
@@ -23,8 +25,15 @@ public class TestMethods_GoogleSearch {
         gPage.setSearchBox("facebook");
 
     }
+    @Test
+    public void searchTest1() {
+        GoogleSearchPage gPage = new GoogleSearchPage(driver);
+        gPage.acceptPopup();
+        gPage.setSearchBox("facebooksdsf");
 
-    @AfterTest
+    }
+
+    @AfterMethod
     public void afterTest() {
         driver.quit();
     }

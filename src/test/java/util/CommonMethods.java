@@ -11,12 +11,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CommonMethods {
-    WebDriver driver;
+    protected static WebDriver driver;
 
     public WebDriver openChrome(String url, WebDriver driver) {
         this.driver = driver;
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
         //Implicit wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
