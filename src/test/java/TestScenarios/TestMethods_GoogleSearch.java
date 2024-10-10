@@ -20,6 +20,12 @@ public class TestMethods_GoogleSearch extends TestBaseClass {
 
     @Test
     public void searchTest() {
+        String[][] data = baseClass.testData;
+        for(int i=0; i<data.length; i++) {
+            for(int j=0; j<data[i].length; j++) {
+                System.out.println("Values at data["+i+"]["+j+"] is "+data[i][j]);
+            }
+        }
         GoogleSearchPage gPage = new GoogleSearchPage(driver);
         gPage.acceptPopup();
         gPage.setSearchBox("facebook");
